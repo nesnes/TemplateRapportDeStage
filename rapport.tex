@@ -1,0 +1,113 @@
+\documentclass[12pt]{scrreprt}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage[francais]{babel, varioref}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xspace}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{calc}
+\usepackage{listingsutf8}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{afterpage}
+\usepackage[style=verbose-note,backend=bibtex]{biblatex}
+\usepackage{url}
+\usepackage[top=2.1cm,bottom=2.2cm,left=2cm,right=2cm]{geometry}
+\usepackage[final]{pdfpages}
+
+
+% Pour sommaire cliquable 
+\usepackage{hyperref} % Créer des liens et des signets
+\hypersetup{
+colorlinks=true, %colorise les liens
+breaklinks=true, %permet le retour à la ligne dans les liens trop longs
+urlcolor= blue, %couleur des hyperliens
+linkcolor= black, %couleur des liens internes
+citecolor=black,  %couleur des références
+}
+
+% Fichier de bibliographie
+\bibliography{parties/biblio}
+
+\usepackage{templateINSA}
+\initINSA
+
+% Tirte centre
+\renewcommand\infoBig{Alexandre Brehmer}
+\renewcommand\infoSmall{Rapport De Stage de Spécialité}
+
+% Titre bas 
+\title{Développement de robots à but éducatif}
+\renewcommand\soustitre{Agilic Ltd.}
+
+% Auteurs
+\author{ 
+	\textbf{Étudiant:} Alexandre \bsc{Brehmer} \\
+	\textbf{Maître de stage:} Harry \bsc{Gee}\\
+	\textbf{Entreprise:} Agilic Ltd.\\
+	\textbf{Année:} 2014-2015\\
+	\textbf{Dates:} du 01/06/2015 au 14/08/2015\\
+	\textbf{Lieu:} Bristol, Angleterre\\
+	}
+
+\begin{document}
+
+% titleINSA : Page de garde 
+% #1 : descendre le titre du milieu (en mm)
+% #2 : lien de l'image de fond
+% #3 : décalage sur X de l'image de fond (en mm)
+% #4 : décalage sur Y de l'image de fond (en mm)
+% #5 : largeur de l'image de fond de #5 (en mm)
+% #6 : Crédit de l'image de fond
+ \titleINSA{0}{images/fond.png}{0}{50}{220}{Image : \href{http://pibot.org/}{\color{white}{http://pibot.org}}}
+ 
+
+% Remerciements
+\input{parties/00-Remerciements.tex}
+\addcontentsline{toc}{chapter}{Remerciements}
+
+% Sommaire
+\tableofcontents
+
+% Parties
+\chapter{Présentation de l'entreprise}
+\input{parties/01-PresentationEntreprise.tex}
+
+\chapter{Présentation du sujet}
+\input{parties/02-PresentationSujet.tex}
+
+\chapter{Travail effectué}
+\input{parties/03-TravailEffectue.tex}
+
+\chapter{Conclusion}
+\input{parties/04-Conclusion.tex}
+
+\chapter{Résumé}
+\input{parties/05-Resume.tex}
+
+% Bibliographie
+%\bibliographystyle{plain}
+\printbibliography
+
+% Annexes
+\clearpage
+\appendix
+\chapter{Annexes}
+\input{parties/10-Annexe.tex}
+
+
+% pageQuatriemeCouverture 
+% #1 : Direction
+% #2 : telephone
+% #3 : e-mail
+% #4 : Resume Haut
+% #5 : Resume Bas
+\pageQuatriemeCouverture{Département ASI}{02 32 95 97 79}{asi@insa-rouen.fr}{\input{parties/ResumeFrancais.tex}}{\input{parties/ResumeAnglais.tex}}
+
+
+
+\end{document}

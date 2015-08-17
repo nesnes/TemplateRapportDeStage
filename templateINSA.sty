@@ -1,0 +1,220 @@
+\ProvidesPackage{templateINSA}[2015/02/17. v5 (Page de garde, credits, header, footer). Thomas ROBERT - Alexandre BREHMER]
+
+% Marges
+\RequirePackage {geometry}
+\RequirePackage {fancyhdr}
+\RequirePackage {titlesec}
+
+% Images
+\RequirePackage {graphicx}
+\RequirePackage {color}
+\RequirePackage {epic,eepic}
+
+% Texte et calculs
+\RequirePackage {slantsc}
+\RequirePackage {calc}
+\RequirePackage {ifthen}
+\RequirePackage {lastpage}
+\RequirePackage {etoolbox}
+
+%\RequirePackage{pslatex} %Times font
+
+
+\renewcommand\rmdefault{m}
+
+% Textes a redéfinir par l'user
+\newcommand\soustitre{\textbackslash soustitre}
+\newcommand\infoBig{\textbackslash infoBig}
+\newcommand\infoSmall{\textbackslash infoSmall}
+
+% % HEADER & FOOTER
+
+\newcommand{\parttitle}{}
+\newcommand{\chaptertitle}{}
+
+\setlength{\unitlength}{1mm}
+
+% style fancy
+
+\fancyhead[L]{}
+%\fancyhead[C]{}
+\fancyhead[R]{}
+
+\fancyfoot[L]{}
+\fancyfoot[C]{\begin{picture}(0,0) 
+		\put(-56,-5){\includegraphics[width=49mm]{images/PiedDePage.pdf}}
+		\put(-55,-2.8){\begin{minipage}[b]{30mm}\begin{flushleft}\fontsize{14pt}{14pt}\selectfont \textbf{\textcolor{white}{ \thepage{} | \pageref*{LastPage} } }\end{flushleft}\end{minipage}}
+	\end{picture}}
+\fancyfoot[R]{}
+	
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% style plain
+\fancypagestyle{plain}{%
+	\fancyhead[L]{}
+	%\fancyhead[C]{}
+	\fancyhead[R]{}
+	\fancyfoot[L]{}
+	\fancyfoot[C]{\begin{picture}(0,0) 
+		\put(-56.7,-5){\includegraphics[width=49mm]{images/PiedDePage.pdf}}
+		\put(-55,-2.8){\begin{minipage}[b]{30mm}\begin{flushleft}\fontsize{14pt}{14pt}\selectfont 		 	   \textbf{\textcolor{white}{ \thepage{} | \pageref*{LastPage} } }\end{flushleft}\end{minipage}}
+		\end{picture}}
+	\fancyfoot[R]{}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+}
+
+
+\newcommand{\initINSA}{
+	\pagestyle{fancy}
+}
+
+% % PAGE DE TITRE
+
+% titleINSA : page de titre INSA
+% #1 : descendre le titre du milieu (en mm)
+% #2 : lien de l'image de fond
+% #3 : décalage de l'image de fond de x = -#3 mm
+% #4 : décalage de l'image de fond de y = -#4 mm
+% #5 : largeur de l'image de fond de #5 mm
+% A redefinir : \titre \soustitre \infoBig \infoSmall \auteurs
+\newcommand\titleINSA[6]{
+\fontfamily{phv}
+	\makeatletter
+	\let\thetitle\@title        % Document title saved in command
+	\let\theauthor\@author      % Document author saved in command
+	\makeatother
+	
+	\newgeometry{left=2cm,right=2cm,bottom=2cm,top=2cm}
+
+	\begin{titlepage}
+		% paramètres
+		
+		\newcounter{couvDecalBas}
+		\setcounter{couvDecalBas}{#1}
+		
+		\newcounter{couvFondBas}
+		\setcounter{couvFondBas}{#4}
+		
+		\newcounter{couvFondGauche}
+		\setcounter{couvFondGauche}{#3}
+		
+		\newcounter{couvWidth}
+		\setcounter{couvWidth}{#5}
+		
+		% calculé
+		\newcounter{couvBas}
+		\setcounter{couvBas}{-10 - \thecouvDecalBas}
+		
+		\newcounter{couvFondY}
+		\setcounter{couvFondY}{115 - \thecouvDecalBas - \thecouvFondBas}
+		
+		\newcounter{couvTextG}
+		\setcounter{couvTextG}{185 - \thecouvDecalBas}
+		
+		\newcounter{couvTextD}
+		\setcounter{couvTextD}{85 - \thecouvDecalBas}
+		
+		\definecolor{INSA_CYAN}{cmyk}{0.6,0,0,0}
+		\definecolor{INSA_MARINE}{cmyk}{0.95,0.69,0.35,0.19}
+		
+		\begin{picture}(183,250)(27,27)
+		% Fond
+		\ifx&#2&%
+  			% #2 est vide, pas d'image de fond
+		\else
+			\put(\thecouvFondGauche,\thecouvFondBas){\includegraphics[width=\thecouvWidth mm]{#2}}
+		\fi
+		\put(0,0){\includegraphics[width=215mm]{images/Couverture.pdf}}
+		\put(5,150){\begin{minipage}[c]{150mm}\footnotesize  \rotatebox{90}{\textcolor{white}{#6}}\end{minipage}}
+		
+		% Infos gauche milieu
+		\put(15,\thecouvTextG){\begin{minipage}[t]{150mm}\begin{flushleft}
+			\textcolor{white}{
+				\fontsize{57pt}{60pt}\selectfont \textbf{\infoBig} \\
+				\vspace*{20pt}
+				\fontsize{35pt}{40pt}\selectfont \textbf{\infoSmall}\\
+				\vspace*{20pt}}
+				\end{flushleft}\end{minipage}}
+		% Infos milieu bas
+		\put(51,\thecouvTextD){\begin{minipage}[t]{150mm}\textcolor{INSA_MARINE}{\begin{flushleft}
+				\fontsize{30pt}{30pt}\selectfont \textbf{\thetitle}\\
+				\vspace*{10pt}
+				\fontsize{15pt}{15pt}\selectfont \textbf{\textsc{\soustitre}}
+				\end{flushleft}}\end{minipage}}
+		\put(140,120){\begin{minipage}[t]{69mm}\begin{flushright}
+			\fontsize{13pt}{16pt}\selectfont \textcolor{INSA_MARINE}{ \theauthor } \end{flushright}\end{minipage}}
+		\end{picture}
+	\end{titlepage}
+	\restoregeometry
+	%%blank page
+	\afterpage{\null\newpage}
+	\clearpage
+}
+% % PAGE Quatrième de couverture
+
+% pageQuatriemeCouverture 
+% #1 : Direction
+% #2 : telephone
+% #3 : e-mail
+\newcommand{\pageQuatriemeCouverture}[5]{
+
+  \newpage
+  \restoregeometry
+  \thispagestyle{empty}
+  \definecolor{INSA_CYAN}{cmyk}{0.6,0,0,0}
+  \definecolor{INSA_MARINE}{cmyk}{0.95,0.69,0.35,0.69}
+  
+  \definecolor{INSA_GREY}{cmyk}{0.71,0.65,064,0.19}
+  \begin{picture}(150,254)(32,27)
+    \put(0,0){\includegraphics[width=225mm]{images/QuatriemeDeCouverture1.pdf}}
+    \put(110, 55){
+    	\begin{minipage}[t]{115mm}\textcolor{INSA_MARINE}{\begin{flushleft}
+    	% Renseignements
+	\ifx&#1&%
+  		% #1 is empty
+	\else
+    		\fontsize{12pt}{12pt}\selectfont \textbf{RENSEIGNEMENTS}\\
+          	\fontsize{12pt}{12pt}\selectfont #1\\
+            	\fontsize{12pt}{12pt}\selectfont #2\\
+               	\fontsize{12pt}{12pt}\selectfont #3\\
+          \fi
+	 \end{flushleft}}\end{minipage}
+         }
+    \put(16, 55){\begin{minipage}[t]{115mm}\textcolor{INSA_MARINE}{\begin{flushleft}\selectfont
+    	\textbf{INSA Rouen}\\
+            Campus du Madrillet\\
+		685 avenue de l’Université – BP 08\\
+		76801 SAINT-ÉTIENNE-DU-ROUVRAY cedex\\
+		\textbf{www.insa-rouen.fr}\\
+            \end{flushleft}}\end{minipage}
+    \put(-74,-50){\includegraphics[width=49mm]{images/PiedDePage.pdf}}
+    
+    %Resume Haut
+    \put(-95,222){\begin{minipage}[t]{170mm}
+    #4
+    \end{minipage}}  
+    
+    %Resume Bas
+    \put(-110,114){\begin{minipage}[t]{158mm}
+    #5
+    \end{minipage}}  
+    
+    
+    
+    
+         }
+         
+   
+  \end{picture}
+}
+
+\makeatletter
+\let\old@part\@part
+\def\@part[#1]#2{\old@part[#1]{#2} \renewcommand{\parttitle}{#1}}
+\let\old@chapter\@chapter
+\def\@chapter[#1]#2{\old@chapter[#1]{#2} \thispagestyle{fancy} \renewcommand{\chaptertitle}{#1}}
+\makeatother
+
+\endinput
