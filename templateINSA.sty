@@ -16,7 +16,7 @@
 \RequirePackage {ifthen}
 \RequirePackage {lastpage}
 \RequirePackage {etoolbox}
-\RequirePackage{changepage}
+\RequirePackage {changepage}
 
 %\RequirePackage{pslatex} %Times font
 
@@ -42,13 +42,17 @@
 \fancyhead[R]{}
 
 \fancyfoot[L]{}
-\fancyfoot[CE]{\begin{picture}(0,0) 
-		\put(-56,-5){\includegraphics[width=49mm]{images/PiedDePage.pdf}}
-		\put(-55,-2.8){\begin{minipage}[b]{30mm}\begin{flushleft}\fontsize{14pt}{14pt}\selectfont \textbf{\textcolor{white}{ \thepage{} | \pageref*{LastPage} } }\end{flushleft}\end{minipage}}
+\fancyfoot[CO]{
+    \begin{picture}(0,0) 
+	\put(-56.7,-5){\includegraphics[width=49mm]{images/PiedDePage.pdf}}
+	\put(-55,-2.8){\begin{minipage}[b]{30mm}\begin{flushleft}\fontsize{14pt}{14pt}\selectfont 		 
+	\textbf{\textcolor{white}{ \thepage{} | \pageref*{LastPage} } }\end{flushleft}\end{minipage}}
 	\end{picture}}
-\fancyfoot[CO]{\begin{picture}(0,0) 
-	\put(30,-5){\includegraphics[width=49mm]{images/PiedDePage2.pdf}}
-	\put(55,-2.8){\begin{minipage}[b]{30mm}\begin{flushleft}\fontsize{14pt}{14pt}\selectfont \textbf{\textcolor{white}{ \thepage{} | \pageref*{LastPage} } }\end{flushleft}\end{minipage}}
+\fancyfoot[CE]{
+    \begin{picture}(0,0) 
+	\put(9,-5){\includegraphics[width=49mm]{images/PiedDePage2.pdf}}
+	\put(28,-2.8){\begin{minipage}[b]{30mm}\begin{flushright}\fontsize{14pt}{14pt}\selectfont 		 
+	\textbf{\textcolor{white}{ \thepage{} | \pageref*{LastPage} } }\end{flushright}\end{minipage}}
 	\end{picture}}
 \fancyfoot[R]{}
 	
@@ -61,13 +65,17 @@
 	%\fancyhead[C]{}
 	\fancyhead[R]{}
 	\fancyfoot[L]{}
-	\fancyfoot[CE]{\begin{picture}(0,0) 
-		\put(-56,-5){\includegraphics[width=49mm]{images/PiedDePage.pdf}}
-		\put(-55,-2.8){\begin{minipage}[b]{30mm}\begin{flushleft}\fontsize{14pt}{14pt}\selectfont \textbf{\textcolor{white}{ \thepage{} | \pageref*{LastPage} } }\end{flushleft}\end{minipage}}
+	\fancyfoot[CO]{
+	    \begin{picture}(0,0) 
+		\put(-56.7,-5){\includegraphics[width=49mm]{images/PiedDePage.pdf}}
+		\put(-55,-2.8){\begin{minipage}[b]{30mm}\begin{flushleft}\fontsize{14pt}{14pt}\selectfont 		 
+		\textbf{\textcolor{white}{ \thepage{} | \pageref*{LastPage} } }\end{flushleft}\end{minipage}}
 		\end{picture}}
-	\fancyfoot[CO]{\begin{picture}(0,0) 
-		\put(30,-5){\includegraphics[width=49mm]{images/PiedDePage2.pdf}}
-		\put(55,-2.8){\begin{minipage}[b]{30mm}\begin{flushleft}\fontsize{14pt}{14pt}\selectfont \textbf{\textcolor{white}{ \thepage{} | \pageref*{LastPage} } }\end{flushleft}\end{minipage}}
+	\fancyfoot[CE]{
+	    \begin{picture}(0,0) 
+		\put(9,-5){\includegraphics[width=49mm]{images/PiedDePage2.pdf}}
+		\put(28,-2.8){\begin{minipage}[b]{30mm}\begin{flushright}\fontsize{14pt}{14pt}\selectfont 		 
+		\textbf{\textcolor{white}{ \thepage{} | \pageref*{LastPage} } }\end{flushright}\end{minipage}}
 		\end{picture}}
 	\fancyfoot[R]{}
 	\renewcommand{\headrulewidth}{0pt}
