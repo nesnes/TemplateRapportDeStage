@@ -16,6 +16,7 @@
 \RequirePackage {ifthen}
 \RequirePackage {lastpage}
 \RequirePackage {etoolbox}
+\RequirePackage{changepage}
 
 %\RequirePackage{pslatex} %Times font
 
@@ -41,9 +42,13 @@
 \fancyhead[R]{}
 
 \fancyfoot[L]{}
-\fancyfoot[C]{\begin{picture}(0,0) 
+\fancyfoot[CE]{\begin{picture}(0,0) 
 		\put(-56,-5){\includegraphics[width=49mm]{images/PiedDePage.pdf}}
 		\put(-55,-2.8){\begin{minipage}[b]{30mm}\begin{flushleft}\fontsize{14pt}{14pt}\selectfont \textbf{\textcolor{white}{ \thepage{} | \pageref*{LastPage} } }\end{flushleft}\end{minipage}}
+	\end{picture}}
+\fancyfoot[CO]{\begin{picture}(0,0) 
+	\put(30,-5){\includegraphics[width=49mm]{images/PiedDePage2.pdf}}
+	\put(55,-2.8){\begin{minipage}[b]{30mm}\begin{flushleft}\fontsize{14pt}{14pt}\selectfont \textbf{\textcolor{white}{ \thepage{} | \pageref*{LastPage} } }\end{flushleft}\end{minipage}}
 	\end{picture}}
 \fancyfoot[R]{}
 	
@@ -56,9 +61,13 @@
 	%\fancyhead[C]{}
 	\fancyhead[R]{}
 	\fancyfoot[L]{}
-	\fancyfoot[C]{\begin{picture}(0,0) 
-		\put(-56.7,-5){\includegraphics[width=49mm]{images/PiedDePage.pdf}}
-		\put(-55,-2.8){\begin{minipage}[b]{30mm}\begin{flushleft}\fontsize{14pt}{14pt}\selectfont 		 	   \textbf{\textcolor{white}{ \thepage{} | \pageref*{LastPage} } }\end{flushleft}\end{minipage}}
+	\fancyfoot[CE]{\begin{picture}(0,0) 
+		\put(-56,-5){\includegraphics[width=49mm]{images/PiedDePage.pdf}}
+		\put(-55,-2.8){\begin{minipage}[b]{30mm}\begin{flushleft}\fontsize{14pt}{14pt}\selectfont \textbf{\textcolor{white}{ \thepage{} | \pageref*{LastPage} } }\end{flushleft}\end{minipage}}
+		\end{picture}}
+	\fancyfoot[CO]{\begin{picture}(0,0) 
+		\put(30,-5){\includegraphics[width=49mm]{images/PiedDePage2.pdf}}
+		\put(55,-2.8){\begin{minipage}[b]{30mm}\begin{flushleft}\fontsize{14pt}{14pt}\selectfont \textbf{\textcolor{white}{ \thepage{} | \pageref*{LastPage} } }\end{flushleft}\end{minipage}}
 		\end{picture}}
 	\fancyfoot[R]{}
 	\renewcommand{\headrulewidth}{0pt}
@@ -152,6 +161,8 @@
 	\afterpage{\null\newpage}
 	\clearpage
 }
+
+
 % % PAGE Quatrième de couverture
 
 % pageQuatriemeCouverture 
@@ -159,6 +170,11 @@
 % #2 : telephone
 % #3 : e-mail
 \newcommand{\pageQuatriemeCouverture}[5]{
+  \checkoddpage
+  \ifoddpage
+  \else
+	\newpage~
+  \fi
 
   \newpage
   \restoregeometry
